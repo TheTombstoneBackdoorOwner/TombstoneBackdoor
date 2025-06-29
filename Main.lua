@@ -78,7 +78,7 @@ local UIGradient = Instance.new("UIGradient")
 
 -- Properties:
 
-CryoFlux.Name = "TombstoneBackdoor"
+CryoFlux.Name = "Tombstone"
 
 CryoFlux.Parent = game:GetService("CoreGui")
 
@@ -88,7 +88,7 @@ CryoFlux.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 LoadScreen.Name = "LoadScreen"
 
-LoadScreen.Parent = Tombstone
+LoadScreen.Parent = CryoFlux
 
 LoadScreen.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
 
@@ -138,7 +138,7 @@ LoadStatus.TextSize = 14
 
 Main.Name = "Main"
 
-Main.Parent = Tombstone
+Main.Parent = CryoFlux
 
 Main.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
 
@@ -398,7 +398,7 @@ Editor.Font = Enum.Font.Code
 
 Editor.MultiLine = true
 
-Editor.Text = "-- Welcome to Tombstone Backdoor!"
+Editor.Text = "-- Welcome to Tombstone!"
 
 Editor.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -670,7 +670,7 @@ CreditsText.Size = UDim2.new(1, -40, 1, -40)
 
 CreditsText.Font = Enum.Font.Gotham
 
-CreditsText.Text = "Created by Epic_Haxx ;)"
+CreditsText.Text = "Created by TombstoneOnTop on discord ;)"
 
 CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
 
