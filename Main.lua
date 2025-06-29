@@ -88,7 +88,7 @@ CryoFlux.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 LoadScreen.Name = "LoadScreen"
 
-LoadScreen.Parent = CryoFlux
+LoadScreen.Parent = Tombstone
 
 LoadScreen.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
 
@@ -112,7 +112,7 @@ LoadTitle.Size = UDim2.new(1, 0, 0, 50)
 
 LoadTitle.Font = Enum.Font.GothamBold
 
-LoadTitle.Text = "Welcome to TombstoneBackdoor! Injecting.."
+LoadTitle.Text = "Welcome to Tombstone Backdoor! Injecting.."
 
 LoadTitle.TextColor3 = Color3.fromRGB(100, 200, 255)
 
@@ -398,7 +398,7 @@ Editor.Font = Enum.Font.Code
 
 Editor.MultiLine = true
 
-Editor.Text = "-- Welcome to CryoFlux!"
+Editor.Text = "-- Welcome to Tombstone Backdoor!"
 
 Editor.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -670,7 +670,7 @@ CreditsText.Size = UDim2.new(1, -40, 1, -40)
 
 CreditsText.Font = Enum.Font.Gotham
 
-CreditsText.Text = "Created by TombstoneOnTop on discord;)"
+CreditsText.Text = "Created by Epic_Haxx ;)"
 
 CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
 
