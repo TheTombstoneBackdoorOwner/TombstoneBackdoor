@@ -78,7 +78,7 @@ local UIGradient = Instance.new("UIGradient")
 
 -- Properties:
 
-CryoFlux.Name = "Tombstone"
+CryoFlux.Name = "CryoFlux"
 
 CryoFlux.Parent = game:GetService("CoreGui")
 
@@ -112,7 +112,7 @@ LoadTitle.Size = UDim2.new(1, 0, 0, 50)
 
 LoadTitle.Font = Enum.Font.GothamBold
 
-LoadTitle.Text = "Welcome to Tombstone Backdoor! Injecting.."
+LoadTitle.Text = "Welcome to CryoFlux! Injecting.."
 
 LoadTitle.TextColor3 = Color3.fromRGB(100, 200, 255)
 
@@ -200,7 +200,7 @@ Title.Size = UDim2.new(0, 200, 1, 0)
 
 Title.Font = Enum.Font.GothamBold
 
-Title.Text = "Tombstone backdoor"
+Title.Text = "CryoFlux backdoor"
 
 Title.TextColor3 = Color3.fromRGB(100, 200, 255)
 
@@ -272,7 +272,7 @@ ScriptsTab.Size = UDim2.new(1, 0, 0, 30)
 
 ScriptsTab.Font = Enum.Font.GothamMedium
 
-ScriptsTab.Text = "Scripts"
+ScriptsTab.Text = "Scripts(soon)"
 
 ScriptsTab.TextColor3 = Color3.fromRGB(180, 200, 220)
 
@@ -398,7 +398,7 @@ Editor.Font = Enum.Font.Code
 
 Editor.MultiLine = true
 
-Editor.Text = "-- Welcome to Tombstone!"
+Editor.Text = "-- Welcome to CryoFlux!"
 
 Editor.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -530,7 +530,7 @@ ScriptList.ScrollBarThickness = 5
 
 ScriptList.CanvasSize = UDim2.new(0, 0, 0, 300)
 
-ExampleScript1.Name = "Hint"
+ExampleScript1.Name = "ExampleScript1"
 
 ExampleScript1.Parent = ScriptList
 
@@ -544,13 +544,13 @@ ExampleScript1.Size = UDim2.new(1, 0, 0, 30)
 
 ExampleScript1.Font = Enum.Font.Gotham
 
-ExampleScript1.Text = "Hint"
+ExampleScript1.Text = "Soon"
 
 ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
 
 ExampleScript1.TextSize = 12
 
-ExampleScript2.Name = "message"
+ExampleScript2.Name = "ExampleScript2"
 
 ExampleScript2.Parent = ScriptList
 
@@ -564,7 +564,7 @@ ExampleScript2.Size = UDim2.new(1, 0, 0, 30)
 
 ExampleScript2.Font = Enum.Font.Gotham
 
-ExampleScript2.Text = "Message"
+ExampleScript2.Text = "Soon"
 
 ExampleScript2.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -670,7 +670,7 @@ CreditsText.Size = UDim2.new(1, -40, 1, -40)
 
 CreditsText.Font = Enum.Font.Gotham
 
-CreditsText.Text = "Created by TombstoneOnTop on discord ;) (Version: 0.2)"
+CreditsText.Text = "Created by Epic_Haxx ;)"
 
 CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -749,7 +749,7 @@ local function UpdateLineNumbers()
 
     lineCount = lineCount + 1
 
-	
+    
 
     local numbersText = ""
 
@@ -776,6 +776,7 @@ local function SwitchTab(newTab)
     SettingsPage.Visible = false
 
     CreditsPage.Visible = false
+
     
 
     ExecutorTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
@@ -786,7 +787,7 @@ local function SwitchTab(newTab)
 
     CreditsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
 
-    easteregg.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+    
 
     newTab.BackgroundColor3 = Color3.fromRGB(35, 120, 150)
 
