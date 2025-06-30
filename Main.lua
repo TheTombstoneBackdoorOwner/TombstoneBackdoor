@@ -698,52 +698,19 @@ UIGradient.Rotation = 90
 
 UIGradient.Parent = NavBar
 
--- Scripts:
+-- Scripts!
 
-local UserInputService = game:GetService("UserInputService")
-local activated = false
-
-local function showHint()
-	if activated then return end
-	activated = true
-	local hint = Instance.new("Hint")
-	hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
-	hint.Parent = workspace
-end
-
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if gameProcessed then return end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		showHint()
-	end
+Examplescript1.MouseButton1Click:Connect(function()
+    local hint = Instance.new("Hint", workspace)
+    hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
 end)
 
-local UserInputService = game:GetService("UserInputService")
-local ran = false
-
--- Add a short delay to prevent automatic executor clicks on script load triggering this immediately
-local ignoreInput = true
-delay(0.5, function()
-	ignoreInput = false
-end)
-
-local function trigger()
-	if ran then return end
-	ran = true
-	local message = Instance.new("Message", workspace)
-	message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
-	wait(3)
-	message:Destroy()
-end
-
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if gameProcessed then return end
-	if ignoreInput then return end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		trigger()
-	end
-end)
-
+Examplescript2.MouseButton1Click:Connect(function()
+    local message = Instance.new("Message", workspace)
+message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+wait(1)
+message:Destroy()
+	end)
 
 -- Função para atualizar números de linha
 
