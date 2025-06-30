@@ -701,24 +701,6 @@ UIGradient.Parent = NavBar
 -- Scripts:
 
 local UserInputService = game:GetService("UserInputService")
-local activated = false
-
-local function showHint()
-	if activated then return end
-	activated = true
-	local hint = Instance.new("Hint")
-	hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
-	hint.Parent = workspace
-end
-
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if gameProcessed then return end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		showHint()
-	end
-end)
-
-local UIS = game:GetService("UserInputService")
 local ran = false
 
 local function trigger()
@@ -730,10 +712,34 @@ local function trigger()
 	message:Destroy()
 end
 
-UIS.InputBegan:Connect(function(input, gameProcessed)
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	if gameProcessed then return end
-	trigger()
+
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		trigger()
+	end
 end)
+
+local UserInputService = game:GetService("UserInputService")
+local ran = false
+
+local function trigger()
+	if ran then return end
+	ran = true
+	local message = Instance.new("Message", workspace)
+	message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+	wait(3)
+	message:Destroy()
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	-- Only trigger on left mouse button or touch input:
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		trigger()
+	end
+end)
+
 
 -- Função para atualizar números de linha
 
