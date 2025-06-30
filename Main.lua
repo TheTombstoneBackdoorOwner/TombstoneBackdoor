@@ -789,17 +789,6 @@ UIS.InputBegan:Connect(function(input, gpe)
 	end
 end)
 
-local easteregg = script.Parent:WaitForChild("easteregg")
-
-while true do
-	local delayTime = math.random(30, 60)
-	wait(delayTime)
-
-	easteregg.Visible = true
-	wait(20)
-	easteregg.Visible = false
-end
-
 -- Função para atualizar números de linha
 
 local function UpdateLineNumbers()
@@ -871,6 +860,10 @@ local function SwitchTab(newTab)
 
         SettingsPage.Visible = true
 
+    elseif newTab == CreditsTab then
+
+        CreditsPage.Visible = true
+		
     elseif newTab == CreditsTab then
 
         CreditsPage.Visible = true
