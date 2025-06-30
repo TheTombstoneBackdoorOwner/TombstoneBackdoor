@@ -670,7 +670,8 @@ CreditsText.Size = UDim2.new(1, -40, 1, -40)
 
 CreditsText.Font = Enum.Font.Gotham
 
-CreditsText.Text = "Created by TombstoneOnTop on discord ;)"
+CreditsText.Text = "Created by TombstoneOnTop on discord ;)
+(Version: 0.1)"
 
 CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
 
