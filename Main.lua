@@ -272,7 +272,7 @@ ScriptsTab.Size = UDim2.new(1, 0, 0, 30)
 
 ScriptsTab.Font = Enum.Font.GothamMedium
 
-ScriptsTab.Text = "Scripts(soon)"
+ScriptsTab.Text = "Scripts"
 
 ScriptsTab.TextColor3 = Color3.fromRGB(180, 200, 220)
 
@@ -550,7 +550,7 @@ ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
 
 ExampleScript1.TextSize = 12
 
-ExampleScript2.Name = "ExampleScript2"
+ExampleScript2.Name = "message"
 
 ExampleScript2.Parent = ScriptList
 
@@ -564,7 +564,7 @@ ExampleScript2.Size = UDim2.new(1, 0, 0, 30)
 
 ExampleScript2.Font = Enum.Font.Gotham
 
-ExampleScript2.Text = "Soon"
+ExampleScript2.Text = "Message"
 
 ExampleScript2.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -589,6 +589,56 @@ ExampleScript3.Text = "Soon"
 ExampleScript3.TextColor3 = Color3.fromRGB(220, 240, 255)
 
 ExampleScript3.TextSize = 12
+
+-- easter egg
+
+easteregg.Name = "ScriptsPage"
+
+easteregg.Parent = Pages
+
+easteregg.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
+
+easteregg.BorderSizePixel = 0
+
+easteregg.Size = UDim2.new(1, 0, 1, 0)
+
+easteregg.Visible = false
+
+easteregg.Name = "Easter egg"
+
+easteregg.Parent = ScriptsPage
+
+easteregg.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
+
+easteregg.BorderSizePixel = 0
+
+easteregg.Position = UDim2.new(0, 10, 0, 50)
+
+easteregg.Size = UDim2.new(1, -20, 1, -60)
+
+easteregg.ScrollBarThickness = 5
+
+easteregg.CanvasSize = UDim2.new(0, 0, 0, 300)
+
+ExampleScript1.Name = "Did you find it"
+
+ExampleScript1.Parent = ScriptList
+
+ExampleScript1.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
+
+ExampleScript1.BorderSizePixel = 0
+
+ExampleScript1.Position = UDim2.new(0, 0, 0, 10)
+
+ExampleScript1.Size = UDim2.new(1, 0, 0, 30)
+
+ExampleScript1.Font = Enum.Font.Gotham
+
+ExampleScript1.Text = "Easter Egg"
+
+ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
+
+ExampleScript1.TextSize = 12
 
 -- Settings Page
 
@@ -670,7 +720,7 @@ CreditsText.Size = UDim2.new(1, -40, 1, -40)
 
 CreditsText.Font = Enum.Font.Gotham
 
-CreditsText.Text = "Created by TombstoneOnTop on discord ;) (Version: 0.1)"
+CreditsText.Text = "Created by TombstoneOnTop on discord ;) (Version: 0.2)"
 
 CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -718,6 +768,35 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	end
 end)
 
+local UIS = game:GetService("UserInputService")
+local ran = false
+
+local function trigger()
+	if ran then return end
+	ran = true
+	local message = Instance.new("Message", workspace)
+	message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+	wait(3)
+	message:Destroy()
+end
+
+UIS.InputBegan:Connect(function(input, gpe)
+	if gpe then return end
+	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+		trigger()
+	end
+end)
+
+local easteregg = script.Parent:WaitForChild("easteregg")
+
+while true do
+	local delayTime = math.random(30, 60)
+	wait(delayTime)
+
+	easteregg.Visible = true
+	wait(20)
+	easteregg.Visible = false
+end
 
 -- Função para atualizar números de linha
 
@@ -732,9 +811,6 @@ local function UpdateLineNumbers()
     end
 
     lineCount = lineCount + 1
-
-   local UserInputService = game:GetService("UserInputService")
-local activated = false
 
 	
 
@@ -764,6 +840,7 @@ local function SwitchTab(newTab)
 
     CreditsPage.Visible = false
 
+    easteregg.Visible = false
     
 
     ExecutorTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
@@ -774,7 +851,7 @@ local function SwitchTab(newTab)
 
     CreditsTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
 
-    
+    easteregg.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
 
     newTab.BackgroundColor3 = Color3.fromRGB(35, 120, 150)
 
