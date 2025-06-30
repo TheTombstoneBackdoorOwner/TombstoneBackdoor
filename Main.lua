@@ -78,7 +78,7 @@ local UIGradient = Instance.new("UIGradient")
 
 -- Properties:
 
-CryoFlux.Name = "CryoFlux"
+CryoFlux.Name = "Tombstone"
 
 CryoFlux.Parent = game:GetService("CoreGui")
 
@@ -112,7 +112,7 @@ LoadTitle.Size = UDim2.new(1, 0, 0, 50)
 
 LoadTitle.Font = Enum.Font.GothamBold
 
-LoadTitle.Text = "Welcome to CryoFlux! Injecting.."
+LoadTitle.Text = "Welcome to Tombstone Backdoor! Injecting.."
 
 LoadTitle.TextColor3 = Color3.fromRGB(100, 200, 255)
 
@@ -200,7 +200,7 @@ Title.Size = UDim2.new(0, 200, 1, 0)
 
 Title.Font = Enum.Font.GothamBold
 
-Title.Text = "CryoFlux backdoor"
+Title.Text = "Tombstone backdoor"
 
 Title.TextColor3 = Color3.fromRGB(100, 200, 255)
 
@@ -272,7 +272,7 @@ ScriptsTab.Size = UDim2.new(1, 0, 0, 30)
 
 ScriptsTab.Font = Enum.Font.GothamMedium
 
-ScriptsTab.Text = "Scripts(soon)"
+ScriptsTab.Text = "Scripts"
 
 ScriptsTab.TextColor3 = Color3.fromRGB(180, 200, 220)
 
@@ -398,7 +398,7 @@ Editor.Font = Enum.Font.Code
 
 Editor.MultiLine = true
 
-Editor.Text = "-- Welcome to CryoFlux!"
+Editor.Text = "Tombstone Backdoor"
 
 Editor.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -530,7 +530,7 @@ ScriptList.ScrollBarThickness = 5
 
 ScriptList.CanvasSize = UDim2.new(0, 0, 0, 300)
 
-ExampleScript1.Name = "ExampleScript1"
+ExampleScript1.Name = "Hint"
 
 ExampleScript1.Parent = ScriptList
 
@@ -544,13 +544,13 @@ ExampleScript1.Size = UDim2.new(1, 0, 0, 30)
 
 ExampleScript1.Font = Enum.Font.Gotham
 
-ExampleScript1.Text = "Soon"
+ExampleScript1.Text = "Hint"
 
 ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
 
 ExampleScript1.TextSize = 12
 
-ExampleScript2.Name = "ExampleScript2"
+ExampleScript2.Name = "message"
 
 ExampleScript2.Parent = ScriptList
 
@@ -564,7 +564,7 @@ ExampleScript2.Size = UDim2.new(1, 0, 0, 30)
 
 ExampleScript2.Font = Enum.Font.Gotham
 
-ExampleScript2.Text = "Soon"
+ExampleScript2.Text = "message"
 
 ExampleScript2.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -670,7 +670,7 @@ CreditsText.Size = UDim2.new(1, -40, 1, -40)
 
 CreditsText.Font = Enum.Font.Gotham
 
-CreditsText.Text = "Created by Epic_Haxx ;)"
+CreditsText.Text = "Created by TombstoneBackdoor ;) (Version: 0.2)"
 
 CreditsText.TextColor3 = Color3.fromRGB(220, 240, 255)
 
