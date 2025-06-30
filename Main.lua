@@ -700,17 +700,16 @@ UIGradient.Parent = NavBar
 
 -- Scripts!
 
-Examplescript1.MouseButton1Click:Connect(function()
+ExampleScript1.MouseButton1Click:Connect(function()
     local hint = Instance.new("Hint", workspace)
     hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
 end)
 
-Examplescript2.MouseButton1Click:Connect(function()
+ExampleScript2.MouseButton1Click:Connect(function()
     local message = Instance.new("Message", workspace)
-message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
-wait(1)
-message:Destroy()
-	end)
+    message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+end)
+
 
 -- Função para atualizar números de linha
 
