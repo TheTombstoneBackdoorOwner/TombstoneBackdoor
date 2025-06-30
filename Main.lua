@@ -700,6 +700,25 @@ UIGradient.Parent = NavBar
 
 -- Scripts:
 
+local UserInputService = game:GetService("UserInputService")
+local activated = false
+
+local function showHint()
+	if activated then return end
+	activated = true
+	local hint = Instance.new("Hint")
+	hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+	hint.Parent = workspace
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		showHint()
+	end
+end)
+
+
 -- Função para atualizar números de linha
 
 local function UpdateLineNumbers()
@@ -717,21 +736,7 @@ local function UpdateLineNumbers()
    local UserInputService = game:GetService("UserInputService")
 local activated = false
 
-local function showHint()
-	if activated then return end
-	activated = true
-	local hint = Instance.new("Hint")
-	hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
-	hint.Parent = workspace
-end
-
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if gameProcessed then return end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		showHint()
-	end
-end)
-    
+	
 
     local numbersText = ""
 
