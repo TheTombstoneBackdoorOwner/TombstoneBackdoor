@@ -32,6 +32,8 @@ local SettingsTab = Instance.new("TextButton")
 
 local CreditsTab = Instance.new("TextButton")
 
+local easteregg = Instance.new("TextButton")
+
 local Pages = Instance.new("Frame")
 
 local ExecutorPage = Instance.new("Frame")
@@ -592,7 +594,7 @@ ExampleScript3.TextSize = 12
 
 -- easter egg
 
-easteregg.Name = "ScriptsPage"
+easteregg.Name = "easteregg"
 
 easteregg.Parent = Pages
 
@@ -612,7 +614,7 @@ easteregg.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
 
 easteregg.BorderSizePixel = 0
 
-easteregg.Position = UDim2.new(0, 10, 0, 50)
+easteregg.Position = UDim2.new(0, 10, 0, 30)
 
 easteregg.Size = UDim2.new(1, -20, 1, -60)
 
@@ -1050,6 +1052,8 @@ ScriptsTab.MouseButton1Click:Connect(function() SwitchTab(ScriptsTab) end)
 SettingsTab.MouseButton1Click:Connect(function() SwitchTab(SettingsTab) end)
 
 CreditsTab.MouseButton1Click:Connect(function() SwitchTab(CreditsTab) end)
+
+easteregg.MouseButton1Click:Connect(function() SwitchTab(CreditsTab) end)
 
 -- Atualizar números de linha quando o texto muda
 
