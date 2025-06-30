@@ -1,6 +1,6 @@
 -- Gui to Lua
 
--- Version: 3.2
+-- Version: 0.2
 
 -- Instances:
 
@@ -701,28 +701,32 @@ UIGradient.Parent = NavBar
 -- Scripts:
 
 local UserInputService = game:GetService("UserInputService")
-local ran = false
+local activated = false
 
-local function trigger()
-	if ran then return end
-	ran = true
-	local message = Instance.new("Message", workspace)
-	message.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
-	wait(3)
-	message:Destroy()
+local function showHint()
+	if activated then return end
+	activated = true
+	local hint = Instance.new("Hint")
+	hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+	hint.Parent = workspace
 end
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	if gameProcessed then return end
-
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		trigger()
+		showHint()
 	end
 end)
 
 local UserInputService = game:GetService("UserInputService")
 local ran = false
 
+-- Add a short delay to prevent automatic executor clicks on script load triggering this immediately
+local ignoreInput = true
+delay(0.5, function()
+	ignoreInput = false
+end)
+
 local function trigger()
 	if ran then return end
 	ran = true
@@ -734,7 +738,7 @@ end
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	if gameProcessed then return end
-	-- Only trigger on left mouse button or touch input:
+	if ignoreInput then return end
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 		trigger()
 	end
