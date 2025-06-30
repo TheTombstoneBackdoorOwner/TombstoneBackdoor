@@ -32,8 +32,6 @@ local SettingsTab = Instance.new("TextButton")
 
 local CreditsTab = Instance.new("TextButton")
 
-local easteregg = Instance.new("TextButton")
-
 local Pages = Instance.new("Frame")
 
 local ExecutorPage = Instance.new("Frame")
@@ -592,56 +590,6 @@ ExampleScript3.TextColor3 = Color3.fromRGB(220, 240, 255)
 
 ExampleScript3.TextSize = 12
 
--- easter egg
-
-easteregg.Name = "easteregg"
-
-easteregg.Parent = Pages
-
-easteregg.BackgroundColor3 = Color3.fromRGB(20, 23, 30)
-
-easteregg.BorderSizePixel = 0
-
-easteregg.Size = UDim2.new(1, 0, 1, 0)
-
-easteregg.Visible = false
-
-easteregg.Name = "Easter egg"
-
-easteregg.Parent = ScriptsPage
-
-easteregg.BackgroundColor3 = Color3.fromRGB(15, 18, 25)
-
-easteregg.BorderSizePixel = 0
-
-easteregg.Position = UDim2.new(0, 10, 0, 30)
-
-easteregg.Size = UDim2.new(1, -20, 1, -60)
-
-easteregg.ScrollBarThickness = 5
-
-easteregg.CanvasSize = UDim2.new(0, 0, 0, 300)
-
-ExampleScript1.Name = "Did you find it"
-
-ExampleScript1.Parent = ScriptList
-
-ExampleScript1.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
-
-ExampleScript1.BorderSizePixel = 0
-
-ExampleScript1.Position = UDim2.new(0, 0, 0, 10)
-
-ExampleScript1.Size = UDim2.new(1, 0, 0, 30)
-
-ExampleScript1.Font = Enum.Font.Gotham
-
-ExampleScript1.Text = "Easter Egg"
-
-ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
-
-ExampleScript1.TextSize = 12
-
 -- Settings Page
 
 SettingsPage.Name = "SettingsPage"
@@ -782,11 +730,9 @@ local function trigger()
 	message:Destroy()
 end
 
-UIS.InputBegan:Connect(function(input, gpe)
-	if gpe then return end
-	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-		trigger()
-	end
+UIS.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	trigger()
 end)
 
 -- Função para atualizar números de linha
@@ -830,8 +776,6 @@ local function SwitchTab(newTab)
     SettingsPage.Visible = false
 
     CreditsPage.Visible = false
-
-    easteregg.Visible = false
     
 
     ExecutorTab.BackgroundColor3 = Color3.fromRGB(25, 28, 36)
@@ -860,10 +804,6 @@ local function SwitchTab(newTab)
 
         SettingsPage.Visible = true
 
-    elseif newTab == CreditsTab then
-
-        CreditsPage.Visible = true
-		
     elseif newTab == CreditsTab then
 
         CreditsPage.Visible = true
@@ -1045,8 +985,6 @@ ScriptsTab.MouseButton1Click:Connect(function() SwitchTab(ScriptsTab) end)
 SettingsTab.MouseButton1Click:Connect(function() SwitchTab(SettingsTab) end)
 
 CreditsTab.MouseButton1Click:Connect(function() SwitchTab(CreditsTab) end)
-
-easteregg.MouseButton1Click:Connect(function() SwitchTab(CreditsTab) end)
 
 -- Atualizar números de linha quando o texto muda
 
