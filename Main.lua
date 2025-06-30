@@ -530,7 +530,7 @@ ScriptList.ScrollBarThickness = 5
 
 ScriptList.CanvasSize = UDim2.new(0, 0, 0, 300)
 
-ExampleScript1.Name = "ExampleScript1"
+ExampleScript1.Name = "Hint"
 
 ExampleScript1.Parent = ScriptList
 
@@ -544,7 +544,7 @@ ExampleScript1.Size = UDim2.new(1, 0, 0, 30)
 
 ExampleScript1.Font = Enum.Font.Gotham
 
-ExampleScript1.Text = "Soon"
+ExampleScript1.Text = "Hint"
 
 ExampleScript1.TextColor3 = Color3.fromRGB(220, 240, 255)
 
@@ -714,6 +714,23 @@ local function UpdateLineNumbers()
 
     lineCount = lineCount + 1
 
+   local UserInputService = game:GetService("UserInputService")
+local activated = false
+
+local function showHint()
+	if activated then return end
+	activated = true
+	local hint = Instance.new("Hint")
+	hint.Text = "THIS GAME JUST GOT FUCKED BY TOMBSTONEONTOP (DISCORD: https://discord.gg/REeDmrsuam)"
+	hint.Parent = workspace
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		showHint()
+	end
+end)
     
 
     local numbersText = ""
